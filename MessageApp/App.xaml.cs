@@ -45,8 +45,6 @@ namespace MessageApp
         {
             _window = new MainWindow();
             _window.Activate();
-           
-            
         }
     }
 }
