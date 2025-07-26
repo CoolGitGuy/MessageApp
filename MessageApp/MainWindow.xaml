@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="MessageApp.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MessageApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="DiscordCopy">
+
+    
+    
+    <Window.SystemBackdrop>
+        <MicaBackdrop />
+    </Window.SystemBackdrop>
+
+    <StackPanel Spacing="20" VerticalAlignment="Center">
+        <Image Source="/Assets/LockScreenLogo.png" Height="70" Width="80"/>
+        <TextBox x:Name="emailBox"  Height="30" Width="400" PlaceholderText="Enter your email" HorizontalAlignment="Center"/>
+        <PasswordBox x:Name="passwordBox"  Height="30" Width="400" PlaceholderText="Enter your password" PasswordChar="*" HorizontalAlignment="Center"/>
+        <Button Click="Button_Click" Content="Log In" HorizontalAlignment="Center"/>
+    </StackPanel>
+</Window>
