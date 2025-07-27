@@ -34,13 +34,8 @@ namespace MessageApp
             this.AppWindow.Resize(size);
             ExtendsContentIntoTitleBar = true;
 
+            this.RootPanel.DataContext = ViewModel;
             InitializeComponent();
         }
-
-        /*private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            String password = passwordBox.Password.ToString();
-                
-        }*/
     }
 }
