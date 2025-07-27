@@ -30,12 +30,11 @@ namespace MessageApp
 
         public MainWindow()
         {
-            SizeInt32 size = new SizeInt32(600, 400);
-            this.AppWindow.Resize(size);
+            this.AppWindow.Resize(new SizeInt32(600, 400));
             ExtendsContentIntoTitleBar = true;
 
-            this.RootPanel.DataContext = ViewModel;
             InitializeComponent();
+            this.StackPanel.DataContext = ViewModel;
         }
     }
 }
