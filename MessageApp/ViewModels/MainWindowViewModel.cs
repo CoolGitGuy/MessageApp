@@ -3,21 +3,27 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MessageApp.ViewModels
 {
-    public partial class MainWindowViewModel : ObservableObject
+    public partial class MainWindowViewModel : INotifyPropertyChanged
     {
-        [ObservableProperty]
-        public partial string? Password { get; set; }
 
-        [RelayCommand]
-        public void ButtonClick()
+        private string email;
+        public string Email
         {
-            Password = "aaa";
+            get { return email; }
+            set {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Email"));
+                email = value; 
+            }
         }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
     }
 }

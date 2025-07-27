@@ -13,11 +13,11 @@
         <MicaBackdrop />
     </Window.SystemBackdrop>
 
-    <StackPanel Spacing="20" VerticalAlignment="Center" Background="DimGray" Height="399">
+    <StackPanel Spacing="20" VerticalAlignment="Center" Background="DimGray" Height="399" x:Name="RootPanel">
         <TextBlock/>
         <Image Source="/Assets/choppa.png" Height="70" Width="80"/>
-        <TextBox x:Name="emailBox"  Height="30" Width="400" PlaceholderText="Enter your email" HorizontalAlignment="Center"/>
-        <PasswordBox x:Name="passwordBox"  Height="30" Width="400" PlaceholderText="Enter your password" PasswordChar="*" HorizontalAlignment="Center" Password="{x:Bind ViewModel.Password, Mode=OneWay}"/>
-        <Button Click="{x:Bind ViewModel.ButtonClick, Mode=OneTime}" Content="Log In" HorizontalAlignment="Center"/>
+        <TextBox x:Name="emailBox"  Height="30" Width="400" PlaceholderText="Enter your email" HorizontalAlignment="Center" Text="{Binding Email}"/>
+        <PasswordBox x:Name="passwordBox"  Height="30" Width="400" PlaceholderText="Enter your password" PasswordChar="*" HorizontalAlignment="Center"/>
+        <Button Command="{Binding Button}"  Content="Log In" HorizontalAlignment="Center"/>
     </StackPanel>
 </Window>
