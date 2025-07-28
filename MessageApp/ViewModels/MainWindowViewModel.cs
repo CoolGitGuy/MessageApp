@@ -19,15 +19,27 @@ namespace MessageApp.ViewModels
     public partial class MainWindowViewModel : ViewModelBase
     {
 
+
         public MainWindowViewModel()
         {
             AuthCommand = new RelayCommand(ChangeItems);
         }
 
-        private string? email;
-        public string Email
+        private string? authErrorText;
+
+        public string? AuthErrorText
         {
-            get { return (email == null) ? email : ""; }
+            get { return authErrorText; }
+            set { 
+                    authErrorText = value;
+                    OnPropertyChanged();
+                }
+        }
+
+        private string? email;
+        public string? Email
+        {
+            get { return email; }
             set
             {
                 email = value;
@@ -37,9 +49,9 @@ namespace MessageApp.ViewModels
 
         private string? password;
 
-        public string Password
+        public string? Password
         {
-            get { return (password == null) ? password : ""; }
+            get { return password; }
             set
             {
                 password = value;
@@ -50,31 +62,29 @@ namespace MessageApp.ViewModels
 
         private void ChangeItems()
         {
-            Debug.WriteLine(email);
             EmailVerification(Email);
         }
 
 
-        public static void EmailVerification(string emailAdress)
+        public void EmailVerification(string emailAdress)
         {
             MailMessage mail = new MailMessage();
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
             try
             {
                 mail.From = new MailAddress("leaderrat58@gmail.com");
-                mail.To.Add("borisboskovic16@gmail.com");
+                mail.To.Add(emailAdress);
                 mail.Subject = "Verification Email";
                 mail.Body = "Verifikuj se";
                 smtpClient.Port = 587;
                 smtpClient.UseDefaultCredentials = false;
-                smtpClient.Credentials = new NetworkCredential("leaderrat58@gmail.com", "");
+                smtpClient.Credentials = new NetworkCredential("leaderrat58@gmail.com", "nuov brrb thiv nczj");
                 smtpClient.EnableSsl = true;
                 smtpClient.Send(mail);
             }
             catch (Exception)
             {
-
-                throw;
+                AuthErrorText = "Email address is not valid.";
             }
         }
     }
