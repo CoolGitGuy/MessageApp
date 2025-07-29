@@ -18,14 +18,15 @@ namespace MessageApp.ViewModels
 {
     public partial class MainWindowViewModel : ViewModelBase
     {
-
+        private string? authErrorText;
+        private string? email;
+        private string? password;
+        public ICommand AuthCommand { get; }
 
         public MainWindowViewModel()
         {
             AuthCommand = new RelayCommand(ChangeItems);
         }
-
-        private string? authErrorText;
 
         public string? AuthErrorText
         {
@@ -36,7 +37,6 @@ namespace MessageApp.ViewModels
                 }
         }
 
-        private string? email;
         public string? Email
         {
             get { return email; }
@@ -47,8 +47,6 @@ namespace MessageApp.ViewModels
             }
         }
 
-        private string? password;
-
         public string? Password
         {
             get { return password; }
@@ -58,7 +56,6 @@ namespace MessageApp.ViewModels
                 OnPropertyChanged();
             }
         }
-        public ICommand AuthCommand { get; }
 
         private void ChangeItems()
         {
@@ -66,8 +63,9 @@ namespace MessageApp.ViewModels
         }
 
 
-        public void EmailVerification(string emailAdress)
+        public void EmailVerification(string emailAdress) //Sends A Verification Email Using SMTP Protocol
         {
+            string verificationCode = VerificationCode();
             MailMessage mail = new MailMessage();
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
             try
@@ -75,7 +73,7 @@ namespace MessageApp.ViewModels
                 mail.From = new MailAddress("leaderrat58@gmail.com");
                 mail.To.Add(emailAdress);
                 mail.Subject = "Verification Email";
-                mail.Body = "Verifikuj se";
+                mail.Body = "Your Verification Code Is " + verificationCode;
                 smtpClient.Port = 587;
                 smtpClient.UseDefaultCredentials = false;
                 smtpClient.Credentials = new NetworkCredential("leaderrat58@gmail.com", "nuov brrb thiv nczj");
@@ -86,6 +84,18 @@ namespace MessageApp.ViewModels
             {
                 AuthErrorText = "Email address is not valid.";
             }
+        }
+
+        public string VerificationCode() //String Containing 6 Random Numbers (Used For Email Verification)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            Random randomNumber = new Random();
+
+            for (int i = 0; i < 6; i++)
+            {
+                stringBuilder.Append(randomNumber.Next(10));
+            }
+            return stringBuilder.ToString();
         }
     }
 }
