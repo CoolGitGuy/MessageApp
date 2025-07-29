@@ -19,6 +19,6 @@
         <TextBox x:Name="emailBox"  Height="30" Width="400" PlaceholderText="Enter your email" HorizontalAlignment="Center" Text="{Binding Email,Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
         <PasswordBox x:Name="passwordBox"  Height="30" Width="400" PlaceholderText="Enter your password" PasswordChar="*" HorizontalAlignment="Center" Password="{Binding Password, Mode=TwoWay}"/>
         <Button  Content="Log In" HorizontalAlignment="Center" Command="{Binding AuthCommand}"/>
-        <TextBlock Text="{Binding AuthErrorText,Mode=TwoWay}"/>
+        <TextBlock Text="{Binding AuthErrorText,Mode=TwoWay}" HorizontalAlignment="Center" Foreground="Red"/>
     </StackPanel>
 </Window>

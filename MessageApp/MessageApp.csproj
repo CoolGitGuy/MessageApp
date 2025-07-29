@@ -31,6 +31,7 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="chopper.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -66,9 +67,13 @@
     <PublishReadyToRun Condition="'$(Configuration)' != 'Debug'">True</PublishReadyToRun>
     <PublishTrimmed Condition="'$(Configuration)' == 'Debug'">False</PublishTrimmed>
     <PublishTrimmed Condition="'$(Configuration)' != 'Debug'">True</PublishTrimmed>
+    <ApplicationIcon>chopper.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <PRIResource Remove="NewFolder\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Assets\chopper.ico" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
