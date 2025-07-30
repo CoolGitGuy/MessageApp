@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MessageApp.MVVM;
 using MessageApp.Services;
 using System;
@@ -12,6 +13,8 @@ namespace MessageApp.ViewModels
 {
     public partial class VerificationWindowViewModel : ViewModelBase
     {
+        private string? verificationCode;
+
         private string? verificationText;
         public ICommand VerificationCommand { get; }
         public ICommand BackButton { get; }
@@ -21,6 +24,11 @@ namespace MessageApp.ViewModels
             this.windowService = windowService;
             VerificationCommand = new RelayCommand(VerifyAction);
             BackButton = new RelayCommand(BackAction);
+
+            WeakReferenceMessenger.Default.Register<VerificationCodeMessage>(this, (r, m) =>
+            {
+                Gas(m.Value);
+            });
         }
 
         public string? VerificationText
@@ -31,14 +39,29 @@ namespace MessageApp.ViewModels
                 OnPropertyChanged();
             }
         }
+        private string? verificationChecker;
 
+        public string? VerificationChecker
+        {
+            get { return verificationChecker; }
+            set 
+            { 
+                verificationChecker = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public void Gas(string message)
+        {
+            VerificationChecker = message;
+        }
 
         public void VerifyAction()
         {
             VerificationText = "Ide gas";
         }
 
-        public void BackAction()
+        public void BackAction() //Goes Back To MainWindow
         {
             windowService.openWindow<MainWindow>();
             windowService.closeCurrentWindow();

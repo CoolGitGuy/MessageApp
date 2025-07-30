@@ -21,5 +21,6 @@
         <TextBlock Text="Verification Code:" HorizontalAlignment="Center"/>
         <TextBox HorizontalAlignment="Center" Width="150" MaxLength="6" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding VerificationText,Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
         <Button  Content="Verify" HorizontalAlignment="Center" Command="{Binding VerificationCommand}"/>
+        <TextBlock Text="{Binding VerificationChecker}"/>
     </StackPanel>
 </Window>
