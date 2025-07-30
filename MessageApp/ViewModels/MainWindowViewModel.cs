@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MessageApp.MVVM;
 using MessageApp.Services;
 using Microsoft.UI.Xaml;
@@ -62,7 +63,8 @@ namespace MessageApp.ViewModels
 
         private void AuthAction()
         {
-            EmailVerification(Email);
+            if(Email != null)
+                EmailVerification(Email);
         }
 
 
@@ -83,6 +85,7 @@ namespace MessageApp.ViewModels
                 smtpClient.EnableSsl = true;
                 smtpClient.Send(mail);
                 windowService.openWindow<VerificationWindow>();
+                WeakReferenceMessenger.Default.Send(new VerificationCodeMessage(verificationCode));
                 windowService.closeCurrentWindow();
             }
             catch (Exception)

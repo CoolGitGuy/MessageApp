@@ -14,7 +14,7 @@ namespace MessageApp.MVVM
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        protected void OnPropertyChanged([CallerMemberName] string property = null)
+        protected void OnPropertyChanged([CallerMemberName] string? property = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
