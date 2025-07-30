@@ -14,13 +14,8 @@
 	  <LangVersion>preview</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="NewFolder\**" />
-    <EmbeddedResource Remove="NewFolder\**" />
-    <None Remove="NewFolder\**" />
-    <Page Remove="NewFolder\**" />
-  </ItemGroup>
-  <ItemGroup>
     <None Remove="Assets\choppa.png" />
+    <None Remove="VerificationWindow.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -70,12 +65,14 @@
     <ApplicationIcon>chopper.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <PRIResource Remove="NewFolder\**" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Remove="Assets\chopper.ico" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="VerificationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>
