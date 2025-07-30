@@ -13,7 +13,13 @@
         <MicaBackdrop />
     </Window.SystemBackdrop>
 
-    <Grid>
-
-    </Grid>
+    <StackPanel Spacing="20" VerticalAlignment="Center" Background="DimGray" Height="399" x:Name="StackPanel">
+        <Button AutomationProperties.Name="Pie"  Foreground="DimGray" Background="DimGray" Command="{Binding BackButton}">
+            <Image Source="/Assets/back.png" Height="21" Width="20"/>
+        </Button>
+        <Image Source="/Assets/choppa.png" Height="70" Width="80"/>
+        <TextBlock Text="Verification Code:" HorizontalAlignment="Center"/>
+        <TextBox HorizontalAlignment="Center" Width="150" MaxLength="6" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding VerificationText,Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+        <Button  Content="Verify" HorizontalAlignment="Center" Command="{Binding VerificationCommand}"/>
+    </StackPanel>
 </Window>

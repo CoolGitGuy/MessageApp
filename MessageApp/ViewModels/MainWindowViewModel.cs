@@ -22,13 +22,13 @@ namespace MessageApp.ViewModels
         private string? authErrorText;
         private string? email;
         private string? password;
-        private IWindowService windowService;
+        private readonly IWindowService windowService;
         public ICommand AuthCommand { get; }
 
         public MainWindowViewModel(IWindowService windowService)
         {
             this.windowService = windowService;
-            AuthCommand = new RelayCommand(ChangeItems);
+            AuthCommand = new RelayCommand(AuthAction);
         }
 
         public string? AuthErrorText
@@ -60,7 +60,7 @@ namespace MessageApp.ViewModels
             }
         }
 
-        private void ChangeItems()
+        private void AuthAction()
         {
             EmailVerification(Email);
         }
