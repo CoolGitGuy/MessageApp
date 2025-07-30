@@ -1,3 +1,4 @@
+using MessageApp.Services;
 using MessageApp.ViewModels;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
@@ -27,14 +28,16 @@ namespace MessageApp
     /// </summary>
     public sealed partial class MainWindow : Window
     {
-        public MainWindowViewModel ViewModel { get; set; } = new();
+        public MainWindowViewModel viewModel;
 
         public MainWindow()
         {
             WindowSettings();
 
             InitializeComponent();
-            this.StackPanel.DataContext = ViewModel;
+            var windowService = new WindowService(this);
+            viewModel = new MainWindowViewModel(windowService);
+            this.StackPanel.DataContext = viewModel;
         }
 
         public void WindowSettings() //Disables Resize And Removes Title Bar

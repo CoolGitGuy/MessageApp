@@ -1,18 +1,19 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using MessageApp.MVVM;
+using MessageApp.Services;
 using Microsoft.UI.Xaml;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using System.Net;
 using System.Net.Mail;
+using System.Runtime.CompilerServices;
+using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MessageApp.ViewModels
 {
@@ -21,10 +22,12 @@ namespace MessageApp.ViewModels
         private string? authErrorText;
         private string? email;
         private string? password;
+        private IWindowService windowService;
         public ICommand AuthCommand { get; }
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(IWindowService windowService)
         {
+            this.windowService = windowService;
             AuthCommand = new RelayCommand(ChangeItems);
         }
 
@@ -79,6 +82,8 @@ namespace MessageApp.ViewModels
                 smtpClient.Credentials = new NetworkCredential("leaderrat58@gmail.com", "nuov brrb thiv nczj");
                 smtpClient.EnableSsl = true;
                 smtpClient.Send(mail);
+                windowService.openWindow<VerificationWindow>();
+                windowService.closeCurrentWindow();
             }
             catch (Exception)
             {
