@@ -4,6 +4,7 @@ using MessageApp.MVVM;
 using MessageApp.Services;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,27 +16,27 @@ namespace MessageApp.ViewModels
     {
         private string? verificationCode;
 
-        private string? verificationText;
-        public ICommand VerificationCommand { get; }
+        private string? authTextBox;
+        public ICommand AuthButtonCommand { get; }
         public ICommand BackButton { get; }
         private IWindowService windowService;
         public VerificationWindowViewModel(IWindowService windowService)
         {
             this.windowService = windowService;
-            VerificationCommand = new RelayCommand(VerifyAction);
+            AuthButtonCommand = new RelayCommand(VerifyAction);
             BackButton = new RelayCommand(BackAction);
 
             WeakReferenceMessenger.Default.Register<VerificationCodeMessage>(this, (r, m) =>
             {
-                Gas(m.Value);
+                verificationCode = m.Value;
             });
         }
 
-        public string? VerificationText
+        public string? AuthTextBox
         {
-            get { return verificationText; }
+            get { return authTextBox; }
             set { 
-                verificationText = value;
+                authTextBox = value;
                 OnPropertyChanged();
             }
         }
@@ -51,14 +52,11 @@ namespace MessageApp.ViewModels
             }
         }
 
-        public void Gas(string message)
+        public void VerifyAction() // AuthButtonCommand, It checks if the verification code is valid or not
         {
-            VerificationChecker = message;
-        }
-
-        public void VerifyAction()
-        {
-            VerificationText = "Ide gas";
+            if(AuthTextBox != null && AuthTextBox.Equals(verificationCode))
+                VerificationChecker = "Kod je validan!";
+            else VerificationChecker = "Kod nije validan!";
         }
 
         public void BackAction() //Goes Back To MainWindow
