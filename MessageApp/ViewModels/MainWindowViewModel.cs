@@ -22,7 +22,6 @@ namespace MessageApp.ViewModels
     {
         private string? authErrorText;
         private string? email;
-        private string? password;
         private readonly IWindowService windowService;
         public ICommand AuthCommand { get; }
 
@@ -35,10 +34,11 @@ namespace MessageApp.ViewModels
         public string? AuthErrorText
         {
             get { return authErrorText; }
-            set { 
-                    authErrorText = value;
-                    OnPropertyChanged();
-                }
+            set
+            {
+                authErrorText = value;
+                OnPropertyChanged();
+            }
         }
 
         public string? Email
@@ -51,19 +51,9 @@ namespace MessageApp.ViewModels
             }
         }
 
-        public string? Password
-        {
-            get { return password; }
-            set
-            {
-                password = value;
-                OnPropertyChanged();
-            }
-        }
-
         private void AuthAction()
         {
-            if(Email != null)
+            if (Email != null)
                 EmailVerification(Email);
         }
 
@@ -86,6 +76,7 @@ namespace MessageApp.ViewModels
                 smtpClient.Send(mail);
                 windowService.openWindow<VerificationWindow>();
                 WeakReferenceMessenger.Default.Send(new VerificationCodeMessage(verificationCode));
+                WeakReferenceMessenger.Default.Send(new EmailMessage(emailAdress));
                 windowService.closeCurrentWindow();
             }
             catch (Exception)

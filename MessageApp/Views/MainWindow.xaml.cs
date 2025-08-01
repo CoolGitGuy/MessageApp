@@ -45,9 +45,9 @@ namespace MessageApp
             if (this.AppWindow.Presenter is OverlappedPresenter presenter)
             {
                 presenter.IsResizable = false;
-                //presenter.SetBorderAndTitleBar(false, false);
+                presenter.SetBorderAndTitleBar(false, false);
             }
-            this.AppWindow.Resize(new SizeInt32(600, 400));
+            this.AppWindow.MoveAndResize(new RectInt32(600,300,600, 400));
             ExtendsContentIntoTitleBar = true;
         }
     }
