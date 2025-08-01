@@ -16,7 +16,9 @@
   <ItemGroup>
     <None Remove="Assets\back.png" />
     <None Remove="Assets\choppa.png" />
+    <None Remove="Assets\icon.jpg" />
     <None Remove="VerificationWindow.xaml" />
+    <None Remove="Views\ChatAppWindow.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -67,9 +69,31 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Remove="Assets\chopper.ico" />
+    <Content Remove="Assets\ChopperIcon.altform-lightunplated_targetsize-16.png" />
+    <Content Remove="Assets\ChopperIcon.altform-lightunplated_targetsize-24.png" />
+    <Content Remove="Assets\ChopperIcon.altform-lightunplated_targetsize-256.png" />
+    <Content Remove="Assets\ChopperIcon.altform-lightunplated_targetsize-32.png" />
+    <Content Remove="Assets\ChopperIcon.altform-lightunplated_targetsize-48.png" />
+    <Content Remove="Assets\ChopperIcon.altform-unplated_targetsize-16.png" />
+    <Content Remove="Assets\ChopperIcon.altform-unplated_targetsize-24.png" />
+    <Content Remove="Assets\ChopperIcon.altform-unplated_targetsize-256.png" />
+    <Content Remove="Assets\ChopperIcon.altform-unplated_targetsize-32.png" />
+    <Content Remove="Assets\ChopperIcon.altform-unplated_targetsize-48.png" />
+    <Content Remove="Assets\ChopperIcon.scale-100.png" />
+    <Content Remove="Assets\ChopperIcon.scale-125.png" />
+    <Content Remove="Assets\ChopperIcon.scale-150.png" />
+    <Content Remove="Assets\ChopperIcon.scale-200.png" />
+    <Content Remove="Assets\ChopperIcon.scale-400.png" />
+    <Content Remove="Assets\ChopperIcon.targetsize-16.png" />
+    <Content Remove="Assets\ChopperIcon.targetsize-24.png" />
+    <Content Remove="Assets\ChopperIcon.targetsize-256.png" />
+    <Content Remove="Assets\ChopperIcon.targetsize-32.png" />
+    <Content Remove="Assets\ChopperIcon.targetsize-48.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\" />
+    <Page Update="Views\ChatAppWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="VerificationWindow.xaml">
